@@ -25,23 +25,41 @@ int main()
 		++b3;
 		++b3;
 	}
-	catch (const Bureaucrat::GradeTooHighException& e) {
+	catch (const Bureaucrat::GradeTooHighException& e)
+	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException& e) {
+	catch (const Bureaucrat::GradeTooLowException& e)
+	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	try {
-		Bureaucrat b4("Intern", 149);
-		--b4;
-		--b4;
+	try 
+	{
+		Bureaucrat b1("Intern", 149);
+		--b1;
+		--b1;
 	}
-	catch (const Bureaucrat::GradeTooHighException& e) {
+	catch (const Bureaucrat::GradeTooHighException& e)
+	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
-	catch (const Bureaucrat::GradeTooLowException& e) {
+	catch (const Bureaucrat::GradeTooLowException& e)
+	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	return 0;
+	try 
+	{
+		Bureaucrat b1("Limit", 151);
+	}
+	catch (const Bureaucrat::GradeTooHighException& e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+	catch (const Bureaucrat::GradeTooLowException& e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+	}
+
+	return (0);
 }

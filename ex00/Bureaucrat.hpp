@@ -9,9 +9,9 @@ class Bureaucrat
 {
 private:
 	const std::string _name;
-	unsigned int _grade;
+	int _grade;
 public:
-	Bureaucrat(const std::string& name, unsigned int grade);
+	Bureaucrat(const std::string& name, int grade);
 	~Bureaucrat();
 	Bureaucrat(const Bureaucrat& other);
 	Bureaucrat& operator=(const Bureaucrat& other) = delete;
@@ -22,14 +22,14 @@ public:
 	Bureaucrat	operator--(int);
 
 	const std::string& getName() const;
-	unsigned int getGrade() const;
+	int getGrade() const;
 
 	class GradeTooHighException : public std::exception 
 	{
 	public:
 		const char* what() const noexcept override 
 		{
-		return "Grade is too high!";
+		return ("Grade is too high!");
 		}
 	};
 	
@@ -38,11 +38,10 @@ public:
 	public:
 		const char* what() const noexcept override 
 		{
-		return "Grade is too low!";
+		return ("Grade is too low!");
 		}
 	};
 };
-
 
 std::ostream& operator<<(std::ostream& output, const Bureaucrat& bureaucrat);
 

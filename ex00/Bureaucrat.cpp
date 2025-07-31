@@ -1,8 +1,12 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(const std::string& name, unsigned int grade) : _name(name) , _grade(grade)
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name) , _grade(grade)
 {
+	if (grade < 1)
+		throw GradeTooHighException();
+	if (grade > 150)
+		throw GradeTooLowException();
 	std::cout << "Bureaucrat " <<_name << " with grade " << _grade << " was created." << std::endl;
 }
 
@@ -55,7 +59,7 @@ const std::string& Bureaucrat::getName() const
 	return (_name);
 }
 
-unsigned int Bureaucrat::getGrade() const
+int Bureaucrat::getGrade() const
 {
 	return (_grade);
 }
