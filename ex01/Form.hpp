@@ -42,6 +42,15 @@ public:
 		return ("Grade is too low!");
 		}
 	};
+
+	class FormSignedException : public std::exception
+	{
+	public:
+		const char* what() const noexcept override 
+		{
+		return ("Form is already signed!");
+		}
+	};
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& form);

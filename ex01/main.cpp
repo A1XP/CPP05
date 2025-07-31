@@ -1,65 +1,30 @@
 #include <iostream>
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main()
 {
-	try
-	{
-		Bureaucrat b1("Misha", 3);
+	try {
+		Bureaucrat b1("Tip", 1);
+		Bureaucrat b2("Top", 50);
+		Bureaucrat b3("Hip", 100);
+		Bureaucrat b4("Hop", 150);
+		
+		Form f1("1", 1, 20);
+		Form f2("25", 25, 20);
+		Form f3("125", 125, 20);
+		Form f4("150", 150, 20);
 
-		Bureaucrat b2 = b1;
-		std::cout << "Copied: " << b2 << std::endl;
-
-		++b2;
-		std::cout << "After promotion: " << b2 << std::endl;
-
-		b2--;
-		std::cout << "After demotion: " << b2 << std::endl;
-
-
-		Bureaucrat b3("Boss", 1);
-		--b3;
-		std::cout << "After demotion: " << b3 << std::endl;
-		++b3;
-		std::cout << "Back to 1: " << b3 << std::endl;
-		++b3;
-		++b3;
+		b1.signForm(f1);
+		b1.signForm(f1);
+		b2.signForm(f2);
+		b1.signForm(f2);
+		b4.signForm(f3);
+		b3.signForm(f3);
 	}
-	catch (const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	try 
-	{
-		Bureaucrat b1("Intern", 149);
-		--b1;
-		--b1;
-	}
-	catch (const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
+	catch (const std::exception& e) {
+		std::cerr << "Unhandled exception: " << e.what() << std::endl;
 	}
 
-	try 
-	{
-		Bureaucrat b1("Limit", 151);
-	}
-	catch (const Bureaucrat::GradeTooHighException& e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-	catch (const Bureaucrat::GradeTooLowException& e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-
-	return (0);
+	return 0;
 }
