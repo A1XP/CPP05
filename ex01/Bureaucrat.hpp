@@ -33,7 +33,7 @@ public:
 	public:
 		const char* what() const noexcept override 
 		{
-		return ("Grade is too high!");
+		return ("Bureaucrat grade is too high!");
 		}
 	};
 	
@@ -42,7 +42,7 @@ public:
 	public:
 		const char* what() const noexcept override 
 		{
-		return ("Grade is too low!");
+		return ("Bureaucrat grade is too low!");
 		}
 	};
 };

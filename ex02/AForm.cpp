@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(const std::string& name, int gradeToSign, int gradeToExecute) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
+AForm::AForm(const std::string& name, int gradeToSign, int gradeToExecute) : _name(name), _isSigned(false), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute)
 {
 	if (_gradeToSign < 1 || _gradeToExecute < 1)
 		throw GradeTooHighException();
@@ -12,37 +12,37 @@ Form::Form(const std::string& name, int gradeToSign, int gradeToExecute) : _name
 	std::cout << "Form " << _name  << " with grade to sign : " << _gradeToSign << " and grade to execute : " << _gradeToExecute << " was created." << std::endl;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 	std::cout << "Form " << _name  << " with grade to sign : " << _gradeToSign << " and grade to execute : " << _gradeToExecute << " was deleted." << std::endl;
 }
 
-Form::Form(const Form& other) : _name(other._name), _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
+AForm::AForm(const AForm& other) : _name(other._name), _isSigned(other._isSigned), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute)
 {
 	std::cout << "Form " << _name  << " with grade to sign : " << _gradeToSign << " and grade to execute : " << _gradeToExecute << " was copied." << std::endl;
 }
 
-const std::string& Form::getName() const
+const std::string& AForm::getName() const
 {
 	return (_name);
 }
 
-bool Form::isSigned() const
+bool AForm::isSigned() const
 {
 	return (_isSigned);
 }
 
-int Form::getGradeToSign() const
+int AForm::getGradeToSign() const
 {
 	return (_gradeToSign);
 }
 
-int Form::getGradeToExecute() const
+int AForm::getGradeToExecute() const
 {
 	return (_gradeToExecute);
 }
 
-void Form::beSigned(const Bureaucrat& bureaucrat)
+void AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (_isSigned ==true)
 		throw FormSignedException();
@@ -51,7 +51,16 @@ void Form::beSigned(const Bureaucrat& bureaucrat)
 	_isSigned = true;
 }
 
-std::ostream& operator<<(std::ostream& output, const Form& form)
+void AForm::execute(Bureaucrat const & executor) const 
+{
+	if (!_isSigned)
+		throw FormNotSignedException();
+	if (executor.getGrade() > _gradeToExecute)
+		throw GradeTooLowException();
+	executeAction();
+}
+
+std::ostream& operator<<(std::ostream& output, const AForm& form)
 {
 	output << "Form " << form.getName()
 		<< " (signed: " << (form.isSigned() ? "yes" : "no")
