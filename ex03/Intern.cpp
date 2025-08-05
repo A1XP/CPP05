@@ -16,43 +16,45 @@ Intern::~Intern()
 
 static AForm* createShrubbery(const std::string& target)
 {
-    return new ShrubberyCreationForm(target);
+	return new ShrubberyCreationForm(target);
 }
 
 static AForm* createRobotomy(const std::string& target)
 {
-    return new RobotomyRequestForm(target);
+	return new RobotomyRequestForm(target);
 }
 
 static AForm* createPardon(const std::string& target)
 {
-    return new PresidentialPardonForm(target);
+	return new PresidentialPardonForm(target);
 }
 
 AForm* Intern::makeForm(const std::string& formName, const std::string& target)
 {
-    typedef AForm* (*FormCreator)(const std::string&);
+	typedef AForm* (*FormCreator)(const std::string&);
 
-    struct FormType
+	struct FormType
 	{
-        const char* name;
-        FormCreator create;
-    };
+		const char* name;
+		FormCreator create;
+	};
 
-    FormType forms[] = 
+	FormType forms[] = 
 	{
-        {"shrubbery creation", createShrubbery},
-        {"robotomy request", createRobotomy},
-        {"presidential pardon", createPardon}
-    };
+		{"shrubbery creation", createShrubbery},
+		{"robotomy request", createRobotomy},
+		{"presidential pardon", createPardon}
+	};
 
-    for (size_t i = 0; i < sizeof(forms) / sizeof(forms[0]); ++i) {
-        if (formName == forms[i].name) {
-            std::cout << "Intern creates " << formName << std::endl;
-            return forms[i].create(target);
-        }
-    }
+	for (size_t i = 0; i < sizeof(forms) / sizeof(forms[0]); ++i)
+	{
+		if (formName == forms[i].name) 
+		{
+			std::cout << "Intern creates " << formName << std::endl;
+			return forms[i].create(target);
+		}
+	}
 
-    std::cerr << "Intern couldn't find the form: " << formName << std::endl;
-    return nullptr;
+	std::cerr << "Intern couldn't find the form: " << formName << std::endl;
+	return nullptr;
 }

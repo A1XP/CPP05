@@ -18,23 +18,26 @@ ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 
 void ShrubberyCreationForm::executeAction() const
 {
-    std::ofstream outFile(_target + "_shrubbery");
-    if (!outFile)
-    {
-        std::cerr << "Error: Could not open file " << _target << "_shrubbery for writing.\n";
-        return;
-    }
+	std::ofstream outFile(_target + "_shrubbery");
+	if (!outFile)
+	{
+		std::cerr << "Error: Could not open file " << _target << "_shrubbery for writing.\n";
+		return;
+	}
 
-    outFile <<
-    "       _-_\n"
-    "    /~~   ~~\\\n"
-    " /~~         ~~\\\n"
-    "{               }\n"
-    " \\  _-     -_  /\n"
-    "   ~  \\\\ //  ~\n"
-    "_- -   | | _- _\n"
-    "  _ -  | |   -_\n"
-    "      // \\\\\n";
+	outFile <<
+	"          &&& &&  & &&\n"
+	"      && &\\/&\\|& ()|/ @, &&\n"
+	"      &\\/(/&/&||/& /_/)_&/_&\n"
+	"   &() &\\/&|()|/&\\/ '%\" & ()\n"
+	"  &_\\_&&_\\ |& |&&/&__%_/_& &&\n"
+	"&&   && & &| &| /& & % ()& /&&\n"
+	" ()&_---()&\\&\\|&&-&&--%---()~\n"
+	"     &&     \\|||\n"
+	"             |||\n"
+	"             |||\n"
+	"             |||\n"
+	"       , -=-~  .-^- _\n";
 
-    outFile.close();
+	outFile.close();
 }
